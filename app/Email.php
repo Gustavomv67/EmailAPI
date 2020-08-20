@@ -9,17 +9,18 @@ class Email
 {
     private $email;
 
-    public function email($email)
+    public function __construct($email)
     {
         $this->email = $email;
     }
     public static function filter($emails)
     {
-        return filter_var_array($email = str_split($emails), FILTER_VALIDATE_EMAIL);
+        return array_filter(filter_var_array($emails, FILTER_VALIDATE_EMAIL));
     }
-    public static function sort($email)
+    public static function sort($emails)
     {
-        return sort($email, SORT_STRING);
+        sort($emails, SORT_STRING);
+        return $emails;
     }
     public function send()
     {
